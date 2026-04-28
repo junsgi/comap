@@ -2,9 +2,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 import WebSocket from 'ws';
-import crypto from 'crypto';
 import { formatNumber } from '../exp.js';
-globalThis.crypto = crypto;
 const app = express();
 const port = 3977;
 
