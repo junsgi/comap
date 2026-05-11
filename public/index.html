@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comap</title>
+</head>
+
+<body>
+  <h1>COMAP 실행됨</h1>
+  <div id="result">대기중...</div>
+
+  <script>
+    const ws = new WebSocket(`ws://${location.host}`);
+    console.log(location.host);
+    ws.onmessage = (event) => {
+      console.log(event);
+      const data = event.data
+      document.getElementById('result').innerHTML = event.trade_price;
+    };
+
+    ws.onerror = (err) => {
+      console.error(err);
+    };
+  </script>
+</body>
+
+</html>

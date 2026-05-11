@@ -1,0 +1,16 @@
+services:
+  comap:
+    image: comap:latest
+    build: .
+    container_name: comap-app
+    ports:
+      - "3977:3977"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    env_file:
+      - .env
+    command: npm run dev
+volumes:
+  # 나중에 DB 추가할 때 사용할 볼륨
+  db_data:
