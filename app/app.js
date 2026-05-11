@@ -27,19 +27,17 @@ wss.on('connection', (ws) => {
 });
 
 function broadcast(res) {
-  // const message = JSON.stringify(data);
-  console.log(clients);
+  const message = JSON.stringify(res);
   for (const client of clients) {
     if (client.readyState === client.OPEN) {
-      client.send(res);
+      client.send(message);
     }
   }
 }
 
 
 const Upbit_Callback = (res) => {
-  console.log(res.trade_price);
-
+  // console.log(res.trade_price);
   broadcast({
     type: 'ticker',
     market: 'upbit',

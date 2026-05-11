@@ -13,13 +13,12 @@
 
   <script>
     const ws = new WebSocket(`ws://${location.host}`);
-    console.log(location.host);
-    ws.onmessage = (event) => {
-      console.log(event);
-      const data = event.data
-      document.getElementById('result').innerHTML = event.trade_price;
-    };
 
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      document.getElementById('result').innerHTML = data.market + ' ' + data.trade_price;
+    };
+    
     ws.onerror = (err) => {
       console.error(err);
     };
